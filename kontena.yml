@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  web:
+    image: ${IMAGE_NAME}
+    command: bundle exec rackup -o 0.0.0.0 -p 4567
+    deploy:
+      strategy: daemon
+    environment:
+      - KONTENA_LB_MODE=http
+      - KONTENA_LB_BALANCE=roundrobin
+      - KONTENA_LB_INTERNAL_PORT=4567
+      - KONTENA_LB_VIRTUAL_HOSTS=${LOADBALANCER_VHOSTS}
+    external_links:
+      - loadbalancer

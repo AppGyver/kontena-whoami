@@ -1,0 +1,9 @@
+<h1>kontena-whoami</h1>
+<h2>KONTENA_NODE_NAME: <%= ENV['KONTENA_NODE_NAME'] %></h2>
+
+<fieldset>
+  <legend>ENV</legend>
+  <pre><% ENV.each_pair do |k,v| %>
+<%= k %>=<%= v %><% end %>
+  </pre>
+</fieldset>
