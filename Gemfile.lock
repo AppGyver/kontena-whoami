@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    artii (2.1.2)
     byebug (9.0.6)
     coderay (1.1.1)
     dotenv (2.1.1)
@@ -23,10 +24,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  artii
   byebug
   dotenv
   pry
   sinatra
 
 BUNDLED WITH
-   1.12.5
+   1.13.6
