@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -e
-source bin/common
-
-docker-compose build
-docker-compose run --service-ports web

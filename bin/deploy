@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
-source bin/common
+export IMAGE_NAME=${1}
+export LOADBALANCER_SERVICE_NAME=${2:-loadbalancer}
+export LOADBALANCER_VHOSTS=$3
 
-docker-compose build
-docker-compose push
+kontena app build
 kontena app deploy --force-deploy

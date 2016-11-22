@@ -1,2 +1,0 @@
-export IMAGE_NAME=${1:-develop/kontena-whoami}
-export LOADBALANCER_VHOSTS=$2

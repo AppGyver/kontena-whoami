@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+source bin/common
+
+if [ "$1" == "develop" ]; then
+  export RACK_ENV=development
+fi
+
+docker-compose build
+docker-compose up

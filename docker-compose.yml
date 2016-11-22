@@ -1,12 +1,16 @@
-version: '2'
+version: '2.1'
 
 services:
   web:
-    image: ${IMAGE_NAME}
+    image: kontena-whoami-develop
     build:
+      dockerfile: ${DOCKERFILE:-Dockerfile}
       context: .
+    command: ./start
     ports:
-      - "80:4567"
-    command: bundle exec rackup -o 0.0.0.0 -p 4567
+      - "80:80"
+    environment:
+      - RACK_ENV=${RACK_ENV:-production}
     volumes:
       - .:/app
+      - /usr/local/bundle

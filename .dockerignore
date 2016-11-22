@@ -1,0 +1,9 @@
+.byebug_history
+.git
+bin
+.ruby-gemset
+.ruby-version
+docker-compose.yml
+Dockerfile
+kontena.yml
+README.md

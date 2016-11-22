@@ -2,14 +2,26 @@ version: '2'
 
 services:
   web:
-    image: ${IMAGE_NAME}
-    command: bundle exec rackup -o 0.0.0.0 -p 4567
+    image: ${IMAGE_NAME:-lellik}
+    build:
+      context: .
+    command: ./start
     deploy:
       strategy: daemon
+      wait_for_port: 80
+    stateful: true
     environment:
       - KONTENA_LB_MODE=http
       - KONTENA_LB_BALANCE=roundrobin
-      - KONTENA_LB_INTERNAL_PORT=4567
+      - KONTENA_LB_INTERNAL_PORT=80
       - KONTENA_LB_VIRTUAL_HOSTS=${LOADBALANCER_VHOSTS}
+      - RACK_ENV=production
     external_links:
-      - loadbalancer
+      - ${LOADBALANCER_SERVICE_NAME}
+    health_check:
+      protocol: http
+      port: 80
+      interval: 30
+      uri: /__health_check
+      initial_delay: 60
+      timeout: 2

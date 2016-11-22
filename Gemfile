@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'artii'
 
+gem 'puma'
+
 group :development do
-  gem 'pry'
-  gem 'dotenv'
-  gem 'byebug'
+  gem 'sinatra-contrib'
 end

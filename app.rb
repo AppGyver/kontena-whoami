@@ -1,16 +1,26 @@
 require 'sinatra'
 require 'artii'
 
-def better_hostname
-  return ENV['HOSTNAME'] if ENV['HOSTNAME'].include? "kontena.local"
+if settings.development?
+  require 'sinatra/reloader'
+end
 
-  "kontena-whoami-99.kontena.local"
+before do
+  return unless settings.development?
+
+  ENV['HOSTNAME'] = "kontena-whoami-99.kontena.local"
+  ENV['KONTENA_NODE_NAME'] = "kontena-dev-node-name-01"
 end
 
 get '/' do
   a = Artii::Base.new :font => 'graffiti'
-  instance_number = better_hostname.split(".").first.split("-").last
+  instance_number = ENV['HOSTNAME'].split(".").first.split("-").last
+
   erb :index, locals: {
     instance_number_ascii: a.asciify(instance_number)
   }
+end
+
+get '/__health_check' do
+  "ok"
 end
